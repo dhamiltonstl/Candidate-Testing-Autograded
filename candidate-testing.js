@@ -36,11 +36,11 @@ function askQuestion() {
 
 }
 
-// const askQuestions = () => {
-//   for (i in questions) {
-//     candidateAnswers[i] = input.question(questions[i])
-//   }
-// }
+const askQuestions = () => {
+  for (i in questions) {
+    candidateAnswers[i] = input.question(questions[i])
+  }
+}
 
 function gradeQuiz(candidateAnswers) {
   console.log(`Candidate Name: ${candidateName}`);
@@ -49,15 +49,14 @@ function gradeQuiz(candidateAnswers) {
   else console.log(`Incorrect.\nCorrect Answer: ${correctAnswer}`);
 
   let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
-  // for (i = 0; i < questions.length; i++) {
+  for (i = 0; i < questions.length; i++) {
 
-  //   let qNumb = i + 1
-  //   console.log(`${qNumb}. ${questions[i]}\nYour Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}`)
-  //   if (candidateAnswers[i] == correctAnswers[i]) {
-  //     grade++;
-  //   }
-  // }
-
+    // let qNumb = i + 1
+    // console.log(`${qNumb}. ${questions[i]}\nYour Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}`)
+    if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) {
+      grade+=20;
+    }
+  }
 
   return grade; 
 }
@@ -67,6 +66,7 @@ function runProgram() {
   // TODO 1.1c: Greet candidate using their name //
    console.log(`Greetings ${candidateName}!`);
   askQuestion();
+  askQuestions();
   gradeQuiz(this.candidateAnswers);
 }
 
