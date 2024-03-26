@@ -16,29 +16,21 @@ let correctAnswers;
 let candidateAnswers;
 
 
-function askForName() {
-  // TODO 1.1b: Ask for candidate's name //
-  candidateName = input.question("What is your name? ")
-
-}
+const askForName = () => candidateName = input.question("What is your name? ");
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  question = "What year is it? "
-  correctAnswer = "2024"
-  candidateAnswer = input.question(question)
+  question = "What year is it? ";
+  correctAnswer = "2024";
+  candidateAnswer = input.question(question);
 
 }
 
 function gradeQuiz(candidateAnswers) {
-  console.log(`Candidate Name: ${candidateName}`)
+  console.log(`Candidate Name: ${candidateName}`);
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer == correctAnswer) {
-    console.log("Correct!")
-  } else {
-    console.log("Incorrect.")
-    console.log(`Correct Answer: ${correctAnswer}`)
-  }
+  if (candidateAnswer == correctAnswer) console.log("Correct!");
+  else console.log(`Incorrect.\nCorrect Answer: ${correctAnswer}`);
 
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
