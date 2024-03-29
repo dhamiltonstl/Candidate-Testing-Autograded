@@ -48,12 +48,12 @@ function gradeQuiz(candidateAnswers) {
 
   for (i in questions) {
     if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
-      console.log(`\n${qNum}) ${questions[i]}`)
-      console.log(`Your Answer: ${candidateAnswers[i]}`)
-      console.log(`Correct Answer: ${correctAnswers[i]}`)
-      qNum += 1
       grade += 20;
     }
+    console.log(`\n${qNum}) ${questions[i]}`)
+    console.log(`Your Answer: ${candidateAnswers[i]}`)
+    console.log(`Correct Answer: ${correctAnswers[i]}`)
+    qNum += 1
   }
 
   let status = "FAILED";
