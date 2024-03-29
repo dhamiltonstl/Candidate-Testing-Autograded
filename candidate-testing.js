@@ -1,16 +1,11 @@
 const input = require('readline-sync');
 
-// TODO 2: modify your quiz app to ask 5 questions //
-
-// TODO 1.1a: Define candidateName // 
+// Variables
 let candidateName = "";
-// TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
 let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
-
-
-//TODO: Variables for Part 2
+let dashLine = "---------------------------------------------------------------\n"
 let questions = [
   "Who was the first American woman in space? ",
   "True or false: 5 kilometer == 5000 meters? ",
@@ -27,47 +22,57 @@ let correctAnswers = [
 ];
 let candidateAnswers = [];
 
+// Request Name Input
+const askForName = () => candidateName = input.question("Please Enter Name: ");
 
-const askForName = () => candidateName = input.question("What is your name? ");
-
-function askQuestion() {
-  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  candidateAnswer = input.question(question);
-
-}
-
-const askQuestions = () => {
+// Ask questions to user
+function askQuestions() {
   for (i in questions) {
     candidateAnswers[i] = input.question(questions[i])
+    console.log("\n")
   }
 }
 
+// Grade user answers
 function gradeQuiz(candidateAnswers) {
-  console.log(`Candidate Name: ${candidateName}`);
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer == correctAnswer) console.log("Correct!");
-  else console.log(`Incorrect.\nCorrect Answer: ${correctAnswer}`);
-
-  let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
-  for (i = 0; i < questions.length; i++) {
-
-    // let qNumb = i + 1
-    // console.log(`${qNumb}. ${questions[i]}\nYour Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}`)
+  let grade = 0;
+  for (i in questions) {
     if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) {
-      grade+=20;
+      grade += 20;
     }
   }
-
-  return grade; 
+  return grade;
 }
 
 function runProgram() {
+
   askForName();
-  // TODO 1.1c: Greet candidate using their name //
-   console.log(`Greetings ${candidateName}!`);
-  askQuestion();
+  console.log(`\n${dashLine}`)
+  console.log(`Greetings ${candidateName}! Here is a short quiz!\n`);
+  console.log(dashLine)
+
   askQuestions();
-  gradeQuiz(this.candidateAnswers);
+  console.log(dashLine)
+  console.log(`Candidate Name: ${candidateName}`)
+
+  let qNum = 1
+
+  for (i in questions) {
+    console.log(`\n${qNum}) ${questions[i]}`)
+    console.log(`Your Answer: ${candidateAnswers[i]}`)
+    console.log(`Correct Answer: ${correctAnswers[i]}`)
+    qNum += 1
+  }
+  
+  let grade = gradeQuiz(this.candidateAnswers);
+  let status = "FAILED";
+
+  if (grade >= 80) status = "PASSED"
+
+  console.log(`\n>>> Overall Grade: ${grade}% (${grade / 20} of ${questions.length} responses correct) <<<`)
+  console.log(`>>> STATUS: ${status} <<<`)
+  console.log(`\n${dashLine}`)
+
 }
 
 // ----------- Don't write any code or change any code below this line ---------- //
