@@ -23,7 +23,12 @@ let correctAnswers = [
 let candidateAnswers = [];
 
 // Request Name Input
-const askForName = () => candidateName = input.question("Please Enter Name: ");
+function askForName() {
+  candidateName = input.question("Please Enter Name: ");
+  console.log(`\n${dashLine}`)
+  console.log(`Greetings ${candidateName}! Here is a short quiz!\n`);
+  console.log(dashLine)
+}
 
 // Ask questions to user
 function askQuestions() {
@@ -35,36 +40,22 @@ function askQuestions() {
 
 // Grade user answers
 function gradeQuiz(candidateAnswers) {
-  let grade = 0;
-  for (i in questions) {
-    if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) {
-      grade += 20;
-    }
-  }
-  return grade;
-}
-
-function runProgram() {
-
-  askForName();
-  console.log(`\n${dashLine}`)
-  console.log(`Greetings ${candidateName}! Here is a short quiz!\n`);
-  console.log(dashLine)
-
-  askQuestions();
   console.log(dashLine)
   console.log(`Candidate Name: ${candidateName}`)
 
+  let grade = 0;
   let qNum = 1
 
   for (i in questions) {
-    console.log(`\n${qNum}) ${questions[i]}`)
-    console.log(`Your Answer: ${candidateAnswers[i]}`)
-    console.log(`Correct Answer: ${correctAnswers[i]}`)
-    qNum += 1
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+      console.log(`\n${qNum}) ${questions[i]}`)
+      console.log(`Your Answer: ${candidateAnswers[i]}`)
+      console.log(`Correct Answer: ${correctAnswers[i]}`)
+      qNum += 1
+      grade += 20;
+    }
   }
-  
-  let grade = gradeQuiz(this.candidateAnswers);
+
   let status = "FAILED";
 
   if (grade >= 80) status = "PASSED"
@@ -73,6 +64,14 @@ function runProgram() {
   console.log(`>>> STATUS: ${status} <<<`)
   console.log(`\n${dashLine}`)
 
+  return grade;
+}
+
+// Run the program
+function runProgram() {
+  askForName();
+  askQuestions();
+  gradeQuiz(candidateAnswers);
 }
 
 // ----------- Don't write any code or change any code below this line ---------- //
